@@ -11,6 +11,9 @@ MESSAGE = "FATAL CRUMB OVERFLOW: I have seen things in my tray. I cannot unsee t
 
 
 def main() -> None:
+    # The competition allows at most 120 characters; guard the line so a
+    # future edit can never silently push the entry over the limit.
+    assert 1 <= len(MESSAGE) <= 120, "toaster error message must be 1-120 characters"
     print(MESSAGE)
     output_dir = "/output"
     if os.path.isdir(output_dir):
